@@ -1,0 +1,75 @@
+# 轻量级大模型配置
+llm:
+  # 可选: Qwen/Qwen-7B-Chat, THUDM/chatglm3-6b
+  model_name: "Qwen/Qwen-7B-Chat"
+  device: "cuda"  # 或 "cpu"
+  max_length: 2048
+  temperature: 0.7
+  top_p: 0.9
+  # 量化配置（节省显存）
+  quantization:
+    enabled: true
+    bits: 4  # 4-bit量化
+
+# 传统机器学习模型配置
+ml_models:
+  # 训练时使用的模型列表
+  algorithms:
+    - RandomForest
+    - XGBoost
+    - LightGBM
+    - GradientBoosting
+    - SVR
+
+  # 模型超参数
+  hyperparameters:
+    RandomForest:
+      n_estimators: 100
+      max_depth: 10
+      random_state: 42
+
+    XGBoost:
+      n_estimators: 100
+      max_depth: 6
+      learning_rate: 0.1
+      random_state: 42
+
+    LightGBM:
+      n_estimators: 100
+      max_depth: 8
+      learning_rate: 0.1
+      random_state: 42
+
+    GradientBoosting:
+      n_estimators: 100
+      max_depth: 5
+      learning_rate: 0.1
+      random_state: 42
+
+    SVR:
+      kernel: 'rbf'
+      C: 1.0
+      epsilon: 0.1
+
+# 数据处理配置
+data:
+  test_size: 0.2
+  validation_size: 0.1
+  random_state: 42
+  feature_engineering:
+    enabled: true
+    polynomial_features: false
+    interaction_features: true
+
+# 报告配置
+report:
+  include_visualizations: true
+  include_feature_importance: true
+  include_error_analysis: true
+  output_dir: "reports"
+
+# Agent配置
+agent:
+  max_iterations: 5
+  verbose: true
+  enable_self_reflection: true
